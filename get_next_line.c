@@ -11,12 +11,12 @@ char *read_line(int fd, char *save)
 	{
 		next_read = malloc(BUFFER_SIZE + 1);
 		if(!next_read)
-			return(NULL);
+			return(free(save),save = NULL, NULL);
 		i = read(fd,next_read,BUFFER_SIZE);
+		if(i == -1)
+			return(free(save), free(next_read),next_read = NULL,save = NULL,NULL);
 		if(i == 0)
 			break;	
-		if(i == -1)
-			return(free(next_read),next_read = NULL,NULL);
 		next_read[i] = '\0';
 		save = ft_strjoin(save, next_read);
 		free(next_read);
@@ -65,10 +65,10 @@ char *adjust_next_line(char *save)
 		i++;
 	if (save[i] == '\n')
 		i++;
-	if((size_t) i == ft_strlen(save))
+	if(save[i] == '\0')
 		return(free(save),save = NULL,NULL);
 	j = ft_strlen(save + i);
-	 str = malloc(j + 1);
+	str = malloc(j + 1);
 	if(!str )
 		return(free(save), save = NULL,NULL);
 	 j = 0;
@@ -85,6 +85,10 @@ char	*get_next_line(int fd)
 	static char *save;
 	char		*line;
 
+	if(fd < 0)
+	{
+		return NULL;
+	}
 	if(!ft_strchr(save))
 		save = read_line(fd, save);
 	if (!save)
@@ -93,14 +97,19 @@ char	*get_next_line(int fd)
 	if (!line)
 		return(NULL);
     save = adjust_next_line(save);
-
+	
 	return(line);
 }
-int main ()
-{
-	int fd = open("text.txt" ,O_RDONLY);
-	printf("%s<",get_next_line(fd));
-	// printf("%s",get_next_line(fd));
-	// printf("%s",get_next_line(fd));
-	return (0);
-}
+// int main ()
+// {
+// 	int fd = open("text.txt" ,O_RDONLY);
+// 	close(fd);
+// 	while(1)
+// 		printf("%s",get_next_line(fd));
+// 	printf("%s",get_next_line(fd));
+// 	printf("%s",get_next_line(fd));
+// 	printf("%s",get_next_line(fd));
+// 	printf("%s",get_next_line(fd));
+// 	printf("%s",get_next_line(fd));
+// 	return (0);
+// }
