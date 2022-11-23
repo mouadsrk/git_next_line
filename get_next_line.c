@@ -42,13 +42,15 @@ char *ft_get_line(char *save)
 	str = malloc (i + 1);
 	if(!str)
 		return(free(save),save = NULL, NULL);
-	str[i] = '\0';
+
 	while(save[j] && save[j] != '\n')
 	{
 		str[j] = save[j];
 		j++;
 	}
-	str[j] = '\n';
+	if(save[j] == '\n')
+		str[j++] = '\n';
+	str[j] = '\0';
 	return (str);
 }
 
@@ -94,11 +96,11 @@ char	*get_next_line(int fd)
 
 	return(line);
 }
-// int main ()
-// {
-// 	int fd = open("text.txt" ,O_RDONLY);
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	return (0);
-// }
+int main ()
+{
+	int fd = open("text.txt" ,O_RDONLY);
+	printf("%s<",get_next_line(fd));
+	// printf("%s",get_next_line(fd));
+	// printf("%s",get_next_line(fd));
+	return (0);
+}
