@@ -7,7 +7,7 @@ char *read_line(int fd, char *save)
 
 	i = 1;
 	next_read = NULL;
-    while(!ft_strchr(next_read) && i > 0)
+    while(!ft_strchr(save) && i > 0)
 	{
 		next_read = malloc(BUFFER_SIZE + 1);
 		if(!next_read)
@@ -16,7 +16,7 @@ char *read_line(int fd, char *save)
 		if(i == -1)
 			return(free(save), free(next_read),next_read = NULL,save = NULL,NULL);
 		if(i == 0)
-			break;	
+			break;
 		next_read[i] = '\0';
 		save = ft_strjoin(save, next_read);
 		free(next_read);
@@ -100,16 +100,3 @@ char	*get_next_line(int fd)
 	
 	return(line);
 }
-// int main ()
-// {
-// 	int fd = open("text.txt" ,O_RDONLY);
-// 	close(fd);
-// 	while(1)
-// 		printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	return (0);
-// }
