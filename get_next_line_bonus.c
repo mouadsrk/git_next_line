@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mserrouk <mserrouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 22:29:41 by mserrouk          #+#    #+#             */
-/*   Updated: 2022/11/24 23:13:43 by mserrouk         ###   ########.fr       */
+/*   Created: 2022/11/24 22:29:22 by mserrouk          #+#    #+#             */
+/*   Updated: 2022/11/24 23:13:08 by mserrouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*read_line(int fd, char *save)
 {
@@ -94,17 +94,17 @@ char	*adjust_next_line(char *save)
 
 char	*get_next_line(int fd)
 {
-	static char	*save;
+	static char	*save[10240];
 	char		*line;
 
 	if (fd < 0)
 		return (NULL);
-	save = read_line(fd, save);
-	if (!save)
+	save[fd] = read_line(fd, save[fd]);
+	if (!save[fd])
 		return (NULL);
-	line = ft_get_line(save);
+	line = ft_get_line(save[fd]);
 	if (!line)
 		return (NULL);
-	save = adjust_next_line(save);
+	save[fd] = adjust_next_line(save[fd]);
 	return (line);
 }

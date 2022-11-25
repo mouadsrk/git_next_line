@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mserrouk <mserrouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 22:29:36 by mserrouk          #+#    #+#             */
-/*   Updated: 2022/11/24 23:04:44 by mserrouk         ###   ########.fr       */
+/*   Created: 2022/11/24 22:29:32 by mserrouk          #+#    #+#             */
+/*   Updated: 2022/11/24 23:03:39 by mserrouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	ft_strchr(char *str)
 {
