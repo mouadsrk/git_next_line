@@ -6,7 +6,7 @@
 /*   By: mserrouk <mserrouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 22:29:41 by mserrouk          #+#    #+#             */
-/*   Updated: 2022/11/24 23:13:43 by mserrouk         ###   ########.fr       */
+/*   Updated: 2022/11/26 04:40:29 by mserrouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	*get_next_line(int fd)
 	static char	*save;
 	char		*line;
 
-	if (fd < 0)
+	if (fd < 0 || BUFFER_SIZE < 0 || fd > 10240)
 		return (NULL);
 	save = read_line(fd, save);
 	if (!save)
